@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AdminFoodOrderingApp</string>
+    <string name="login_text">Do not have an account ? <font color="FF4B4B"><b>Sign Up</b></font></string>
+
+</resources>
