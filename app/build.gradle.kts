@@ -58,4 +58,5 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
     implementation("com.google.firebase:firebase-database-ktx:20.3.1")
 
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

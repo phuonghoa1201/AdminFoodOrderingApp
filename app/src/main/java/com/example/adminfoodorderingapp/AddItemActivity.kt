@@ -32,17 +32,17 @@ class AddItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-//        initialize
+//        initialize firebase authentication istance
         auth = FirebaseAuth.getInstance()
 //        intialize firebase database Instance
         database = FirebaseDatabase.getInstance()
 
         binding.addItemBtn.setOnClickListener {
 //            get data from fields
-            foodName = binding.foodName.toString().trim()
-            foodPrice = binding.foodPrice.toString().trim()
-            foodDescription = binding.description.toString().trim()
-            foodIngredients = binding.ingredient.toString().trim()
+            foodName = binding.foodName.text.toString().trim() // trim()=loai bo khoang trang
+            foodPrice = binding.foodPrice.text.toString().trim()
+            foodDescription = binding.description.text.toString().trim()
+            foodIngredients = binding.ingredient.text.toString().trim()
 
             if(!(foodName.isBlank() || foodPrice.isBlank()|| foodDescription.isBlank()||foodIngredients.isBlank()))
             {
@@ -76,7 +76,7 @@ class AddItemActivity : AppCompatActivity() {
         if(foodImageUri != null) {
             val storageRef = FirebaseStorage.getInstance().reference
             val imageRef = storageRef.child("menu_images${newItemKey}.jpg")
-            val uploadTask = imageRef.putFile(foodImageUri!!)
+            val uploadTask = imageRef.putFile(foodImageUri!!) // khi upload hinh len thi !! ko bao gio null
 
             uploadTask.addOnSuccessListener {
                 imageRef.downloadUrl.addOnSuccessListener {
@@ -89,6 +89,7 @@ class AddItemActivity : AppCompatActivity() {
                         foodIngredient = foodIngredients,
                         foodImage = downloadUrl.toString()
                     )
+//                    let thuc hien cac thao tac khi newItemKey not null
                     newItemKey?.let{
                         key ->
                         menuRef.child(key).setValue(newItem).addOnSuccessListener {
@@ -112,8 +113,8 @@ class AddItemActivity : AppCompatActivity() {
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if(uri != null) {
-            binding.selectedImg.setImageURI(uri) // hien thi hinh anh
-            foodImageUri = uri
+            binding.selectedImg.setImageURI(uri) // dat hinh anh vao ImageView
+            foodImageUri = uri // gán uri của hinh anh vào biến foodImageUri
         }
     }
 }
