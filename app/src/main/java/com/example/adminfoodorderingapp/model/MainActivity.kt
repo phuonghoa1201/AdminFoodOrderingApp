@@ -1,5 +1,5 @@
 // MainActivity.kt
-package com.example.adminfoodorderingapp
+package com.example.adminfoodorderingapp.model
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

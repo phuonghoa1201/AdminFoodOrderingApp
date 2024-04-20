@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.adminfoodorderingapp">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,11 +12,11 @@
         android:theme="@style/Theme.AdminFoodOrderingApp"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".model.SignUpActivity"
             android:exported="false" />
         <!-- SplashScreenActivity là hoạt động khởi đầu (LAUNCHER) -->
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".model.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +25,11 @@
             </intent-filter>
         </activity> <!-- LoginActivity và MainActivity -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".model.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true" /> <!-- Định nghĩa meta-data -->
+            android:name=".model.MainActivity"
+            android:exported="false" /> <!-- Định nghĩa meta-data -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
