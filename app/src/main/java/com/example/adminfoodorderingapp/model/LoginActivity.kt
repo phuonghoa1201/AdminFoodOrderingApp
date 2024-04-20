@@ -4,8 +4,6 @@ package com.example.adminfoodorderingapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import com.example.adminfoodorderingapp.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -15,7 +13,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.loginbutton.setOnClickListener {
+        binding.loginButton.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
@@ -25,10 +23,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // Delay 3 seconds before moving to MainActivity
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish() // Finish Login Activity after starting MainActivity
-        }, 6000)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//            finish() // Finish Login Activity after starting MainActivity
+//        }, 6000)
     }
 }
