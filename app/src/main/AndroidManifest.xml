@@ -11,28 +11,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminFoodOrderingApp"
         tools:targetApi="31">
-        <activity
-            android:name=".model.SignUpActivity"
-            android:exported="false" />
         <!-- SplashScreenActivity là hoạt động khởi đầu (LAUNCHER) -->
         <activity
-            android:name=".model.SplashScreenActivity"
+            android:name="SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- LoginActivity và MainActivity -->
+        </activity>
+        <!-- LoginActivity -->
         <activity
-            android:name=".model.LoginActivity"
+            android:name="LoginActivity"
             android:exported="true" />
+        <!-- MainActivity -->
         <activity
             android:name=".model.MainActivity"
-            android:exported="false" /> <!-- Định nghĩa meta-data -->
+            android:exported="true" />
+        <!-- AddItemActivity -->
+        <activity
+            android:name=".AddItemActivity"
+            android:exported="false"/>
+        <!-- SignUpActivity -->
+        <activity
+            android:name=".model.SignUpActivity"
+            android:exported="false" />
+        <!-- Định nghĩa meta-data -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>
