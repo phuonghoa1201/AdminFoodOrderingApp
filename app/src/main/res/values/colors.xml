@@ -8,6 +8,6 @@
     <color name="iconColor">#FEAD10</color>
     <color name="buttonColor">#FF4B4B</color>
     <color name="green">#32CD32</color>
-
+    <color name="red">#FF0000</color>
 
 </resources>

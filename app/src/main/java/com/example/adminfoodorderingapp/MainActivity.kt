@@ -1,11 +1,10 @@
-package com.example.adminfoodorderingapp.model
+package com.example.adminfoodorderingapp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.adminfoodorderingapp.AddItemActivity
-import com.example.adminfoodorderingapp.AllItemActivity
 import com.example.adminfoodorderingapp.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +23,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.allItemMenu.setOnClickListener {
             val intent = Intent(this, AllItemActivity::class.java)
+            startActivity(intent)
+        }
+        binding.outForDeliveryButton.setOnClickListener {
+            val intent = Intent(this, OutForDeliveryActivity::class.java)
+            startActivity(intent)
+        }
+        binding.profile.setOnClickListener {
+            val intent = Intent(this, AdminProfileActivity::class.java)
             startActivity(intent)
         }
     }

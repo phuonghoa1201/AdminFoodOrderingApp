@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">AdminFoodOrderingApp</string>
     <string name="login_text">Do not have an account ? <font color="FF4B4B"><b>Sign Up</b></font></string>
-
+    <string name="sign_up_text">Have an account ? <font color="FF4B4B"><b>Sign In</b></font></string>
 </resources>
