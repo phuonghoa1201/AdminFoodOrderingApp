@@ -3,7 +3,7 @@ package com.example.adminfoodorderingapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.adminfoodorderingapp.databinding.ActivityAdminProfileBinding
-import com.example.adminfoodorderingapp.databinding.ActivityOutForDeliveryBinding
+
 
 class AdminProfileActivity : AppCompatActivity() {
     private val binding: ActivityAdminProfileBinding by lazy {
