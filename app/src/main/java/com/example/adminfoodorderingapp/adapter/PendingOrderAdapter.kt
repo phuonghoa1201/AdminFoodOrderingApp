@@ -1,14 +1,25 @@
 package com.example.adminfoodorderingapp.adapter
 
 import android.content.Context
-import android.os.Message
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.adminfoodorderingapp.PendingOrderActivity
 import com.example.adminfoodorderingapp.databinding.PendingOrdersItemBinding
 
-class PendingOrderAdapter(private val clientNames: ArrayList<String>, private val quantity: ArrayList<String>, private val foodImage: ArrayList<Int>, private val context: Context) : RecyclerView.Adapter<PendingOrderAdapter.PendingOrderViewHolder>() {
+class PendingOrderAdapter(
+    private val clientNames: MutableList<String>,
+    private val quantity: MutableList<String>,
+    private val foodImage: MutableList<String>,
+    private val context: Context,
+    private val itemClicked: PendingOrderActivity
+) : RecyclerView.Adapter<PendingOrderAdapter.PendingOrderViewHolder>() {
+        interface OnItemClicked{
+            fun onItemClickListener(position: Int)
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PendingOrderViewHolder {
         val binding = PendingOrdersItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,7 +39,10 @@ class PendingOrderAdapter(private val clientNames: ArrayList<String>, private va
             binding.apply {
                 clientName.text = clientNames[position]
                 pendingOrderQuantity.text = quantity[position]
-                orderedFoodImage.setImageResource(foodImage[position])
+//                orderedFoodImage.setImageResource(foodImage[position])
+                var uriString = foodImage[position]
+                var uri = Uri.parse(uriString)
+                Glide.with(context).load(uri).into(orderedFoodImage)
 
                 orderedAcceptButton.apply {
                     text = if (isAccepted) "Dispatch" else "Accept"
@@ -44,6 +58,9 @@ class PendingOrderAdapter(private val clientNames: ArrayList<String>, private va
                             showToast("Order is dispatched")
                         }
                     }
+                }
+                itemView.setOnClickListener {
+                    itemClicked.onItemClickListener(position)
                 }
             }
         }
