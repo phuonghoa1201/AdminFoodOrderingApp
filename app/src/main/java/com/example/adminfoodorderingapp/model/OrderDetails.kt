@@ -15,6 +15,7 @@ class OrderDetails() :Serializable {
     var totalPrice: String? = null
     var phoneNumber: String? = null
     var orderAccepted: Boolean = false
+    var orderDispatched: Boolean = false // new
     var paymentReceived: Boolean = false
     var itemPushKey: String? = null
     var currentTime:Long = 0
@@ -26,6 +27,7 @@ class OrderDetails() :Serializable {
         totalPrice = parcel.readString()
         phoneNumber = parcel.readString()
         orderAccepted = parcel.readByte() != 0.toByte()
+        orderDispatched= parcel.readByte() != 0.toByte()
         paymentReceived = parcel.readByte() != 0.toByte()
         itemPushKey = parcel.readString()
         currentTime = parcel.readLong()
@@ -38,6 +40,7 @@ class OrderDetails() :Serializable {
         parcel.writeString(totalPrice)
         parcel.writeString(phoneNumber)
         parcel.writeByte(if (orderAccepted) 1 else 0)
+        parcel.writeByte(if (orderDispatched) 1 else 0)
         parcel.writeByte(if (paymentReceived) 1 else 0)
         parcel.writeString(itemPushKey)
         parcel.writeLong(currentTime)

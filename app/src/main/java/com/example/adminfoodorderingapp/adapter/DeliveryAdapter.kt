@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adminfoodorderingapp.databinding.DeliveryItemBinding
 
-class DeliveryAdapter(private val customerNames: ArrayList<String>, private val statusMoney: ArrayList<String>) : RecyclerView.Adapter<DeliveryAdapter.DeliveryViewHolder>() {
+class DeliveryAdapter(private val customerNames: MutableList<String>, private val statusMoney: MutableList<Boolean>) : RecyclerView.Adapter<DeliveryAdapter.DeliveryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeliveryViewHolder {
         val binding = DeliveryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,9 +25,14 @@ class DeliveryAdapter(private val customerNames: ArrayList<String>, private val 
             binding.apply {
                 // Sử dụng biến binding từ itemView để truy cập các thành phần trong layout item
                 customerName.text = customerNames[position]
-                moneyStatus.text = statusMoney[position] // Sử dụng ID moneyStatus để tham chiếu đến TextView trong layout
+//                moneyStatus.text = statusMoney[position] // Sử dụng ID moneyStatus để tham chiếu đến TextView trong layout
+                if (statusMoney[position] == true){
+                    moneyStatus.text = "Received"
+                }else{
+                    moneyStatus.text = "Not Received"
+                }
                 val colorMap = mapOf(
-                    "received" to Color.GREEN, "notReceived" to Color.RED, "pending" to Color.GRAY
+                    true to Color.GREEN, false to Color.RED //, "pending" to Color.GRAY
                 )
                 moneyStatus.setTextColor(colorMap[statusMoney[position]] ?: Color.BLACK)
                 StatusColor.backgroundTintList = ColorStateList.valueOf(colorMap[statusMoney[position]]?:Color.BLACK)
