@@ -2,6 +2,7 @@ package com.example.adminfoodorderingapp
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adminfoodorderingapp.adapter.MenuItemAdapter
@@ -54,8 +55,51 @@ class AllItemActivity : AppCompatActivity() {
         })
     }
     private fun setAdapter() {
-        val adapter = MenuItemAdapter(this@AllItemActivity,menuItems,databaseReference)
+
+        val adapter = MenuItemAdapter(this@AllItemActivity,menuItems,databaseReference){position ->
+            deleteMenuItems(position)
+        }
         binding.menuRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.menuRecyclerView.adapter = adapter
     }
+
+//    private fun deleteMenuItems(position: Int) {
+//        val menuItemToDelete = menuItems[position]
+//        val menuItemKey = menuItemToDelete.key
+//        val foodMenuReference = database.reference.child("menu").child(menuItemKey!!)
+//        foodMenuReference.removeValue().addOnCompleteListener { task ->
+//            if (task.isSuccessful){
+//                menuItems.removeAt(position)
+//                binding.menuRecyclerView.adapter?.notifyItemRemoved(position)
+//            }else{
+//                Toast.makeText(this, "Item no deleted", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+private fun deleteMenuItems(position: Int) {
+    if (position >= 0 && position < menuItems.size) {
+        val menuItemToDelete = menuItems[position]
+        menuItemToDelete?.let {
+            val menuItemKey = it.key
+            menuItemKey?.let { key ->
+                val foodMenuReference = database.reference.child("menu").child(key)
+                foodMenuReference.removeValue().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        menuItems.removeAt(position)
+                        binding.menuRecyclerView.adapter?.notifyItemRemoved(position)
+                    } else {
+                        Toast.makeText(this, "Item not deleted", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } ?: run {
+                Toast.makeText(this, "Item key is null", Toast.LENGTH_SHORT).show()
+            }
+        } ?: run {
+            Toast.makeText(this, "Item is null", Toast.LENGTH_SHORT).show()
+        }
+    } else {
+        Toast.makeText(this, "Invalid position", Toast.LENGTH_SHORT).show()
+    }
+}
+
+
 }
